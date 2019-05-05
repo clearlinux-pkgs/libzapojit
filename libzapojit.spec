@@ -4,7 +4,7 @@
 #
 Name     : libzapojit
 Version  : 0.0.3
-Release  : 1
+Release  : 2
 URL      : https://download.gnome.org/sources/libzapojit/0.0/libzapojit-0.0.3.tar.xz
 Source0  : https://download.gnome.org/sources/libzapojit/0.0/libzapojit-0.0.3.tar.xz
 Summary  : GLib/GObject wrapper for the SkyDrive and Hotmail REST APIs
@@ -86,8 +86,14 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1552662433
-export LDFLAGS="${LDFLAGS} -fno-lto"
+export SOURCE_DATE_EPOCH=1557019015
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %configure --disable-static
 make  %{?_smp_mflags}
 
@@ -99,7 +105,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1552662433
+export SOURCE_DATE_EPOCH=1557019015
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libzapojit
 cp COPYING %{buildroot}/usr/share/package-licenses/libzapojit/COPYING
